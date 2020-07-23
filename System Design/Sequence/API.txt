@@ -1,0 +1,79 @@
+@startuml
+group Register
+Client -> API: Request Register 
+API -> Database: Create new customer  
+API <-- Database: Response status create customer   
+Client <-- API: Response register status 
+end
+
+group Authentication
+Client -> API: Request authen with username and password
+API -> Database: Check username and password 
+API <-- Database: Response customer data 
+API -> API : Generate access token
+Client <-- API: Response access token
+end
+
+group Get Products
+Client -> API: Request get products with header access token
+API -> API: Check access token
+Client <-- API: [fail] Access token can't use
+API -> Database: Get products
+API <-- Database: Response products data
+Client <-- API: Response products data
+end
+
+group Get Product Detail
+Client -> API: Request get product with header access token and productId
+API -> API: Check access token
+Client <-- API: [fail] Access token can't use
+API -> Database: Get product with productId
+API <-- Database: Response product data
+Client <-- API: Response product data
+end
+
+group Get Profile
+Client -> API: Request get product with header access token 
+API -> API: Check access token
+Client <-- API: [fail] Access token can't use
+API -> Database: Get customer data 
+API <-- Database: Response customer data
+Client <-- API: Response customer data
+end
+
+group Order
+Client -> API: Request order with header access token, productId and amount
+API -> API: Check access token
+Client <-- API: [fail] Access token can't use
+API -> Database: Check product amount and customer balance 
+API <-- Database: Response product data
+Client <-- API: Response order status
+end
+
+group Cancel Order
+Client -> API: Request cancel order with header access token and orderId
+API -> API: Check access token
+Client <-- API: [fail] Access token can't use
+API -> Database: Change order status to cancel
+API <-- Database: Response update status
+Client <-- API: Response update status
+end
+
+group History
+Client -> API: Request history with header access token 
+API -> API: Check access token
+Client <-- API: [fail] Access token can't use
+API -> Database: Get customer order history 
+API <-- Database: Response customer order history 
+Client <-- API: Response customer order history
+end
+
+group Get Order
+Client -> API: Request history with header access token and orderId
+API -> API: Check access token
+Client <-- API: [fail] Access token can't use
+API -> Database: Get order with orderId 
+API <-- Database: Response order data
+Client <-- API: Response order data
+end
+@enduml
