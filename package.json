@@ -1,0 +1,20 @@
+{
+  "name": "ecommerce",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "author": "Eakkachai Yanvaropas",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "config": "^3.3.1",
+    "express": "^4.17.1",
+    "js": "^0.1.0",
+    "jsonwebtoken": "^8.5.1",
+    "mathjs": "^7.1.0",
+    "mongodb": "^3.5.9"
+  }
+}
